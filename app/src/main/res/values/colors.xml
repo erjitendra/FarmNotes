@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="red">#d63636</color>
+    <color name="color_white">#fafafa</color>
+    <color name="color_blue">#6200ea</color>
+    <color name="color_black">#000000</color>
+    <color name="greenSelected">#8BC34A</color>
+    <color name="faddedSelected">#BDBDBD</color>
+    <color name="BlueGray50">#ECEFF1</color>
+    <color name="BlueGray100">#F5F5F5</color>
+    <color name="tabTextColor">#000000</color>
+    <color name="tabIndicatorColor">#6200ea</color>
+    <color name="colorProgressBar">#2278d4</color>
+</resources>
