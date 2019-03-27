@@ -14,6 +14,7 @@
     <color name="BlueGray50">#ECEFF1</color>
     <color name="BlueGray100">#F5F5F5</color>
     <color name="tabTextColor">#000000</color>
-    <color name="tabIndicatorColor">#6200ea</color>
+    <color name="username">#6200ea</color>
     <color name="colorProgressBar">#2278d4</color>
+
 </resources>

@@ -48,7 +48,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
                 0xffb9f6ca,
                 0xffffccbc,
                 0xfffff9c4,
-                0xfffff9c4,
                 0xffe0f7fa,
                 0xfffbe9e7,
                 0xfffce4ec,

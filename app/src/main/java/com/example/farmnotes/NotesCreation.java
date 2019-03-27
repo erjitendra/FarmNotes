@@ -1,5 +1,6 @@
 package com.example.farmnotes;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -10,14 +11,16 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.farmnotes.database.DbCreater;
+import com.example.farmnotes.socialIntegration.GoogleLoginActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class NotesCreation extends AppCompatActivity {
+    private Context context=this;
     EditText etTitle, etContent;
-    Button btn_create;
+    Button btn_create,logout;
     private DbCreater dbCreater = new DbCreater(this);
 
 
@@ -72,6 +75,19 @@ public class NotesCreation extends AppCompatActivity {
 
             }
         });
+
+        //Logout
+        logout = findViewById(R.id.btn_logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SaveSharedPreference.setSignedIn(context,false);
+                SaveSharedPreference.clearAll(context);
+                Intent intent = new Intent(context, GoogleLoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
     }
