@@ -6,18 +6,18 @@ public class NotesModel {
     private String date;
     private Integer id;
 
+    public NotesModel(String title, String content, String date) {
+        this.title = title;
+        this.content = content;
+        this.date = date;
+    }
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public NotesModel(String title, String content, String date) {
-        this.title = title;
-        this.content = content;
-        this.date = date;
     }
 
     public String getTitle() {

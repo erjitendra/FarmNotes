@@ -2,8 +2,8 @@ package com.example.farmnotes;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     Button activity_btn;
-    Context context =this;
+    Context context = this;
     private NotesModel notesModel;
     private NotesAdapter notesAdapter;
     private RecyclerView recyclerView;
@@ -27,15 +27,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
+        //Recycler View Settings
         recyclerView = findViewById(R.id.recyclerViewNotesList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        //Getting notes from device databse
         notesModels = dbCreater.getNotes();
 
-
+        //setting notes in the adapter
         notesAdapter = new NotesAdapter(notesModels, context);
         recyclerView.setAdapter(notesAdapter);
 
@@ -46,9 +46,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), NotesCreation.class);
                 startActivity(intent);
-
-
-
             }
         });
 

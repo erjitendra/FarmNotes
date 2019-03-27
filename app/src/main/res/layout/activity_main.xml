@@ -22,13 +22,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp">
-
-
         </android.support.v7.widget.RecyclerView>
 
-
     </ScrollView>
-
 
     <Button
         android:id="@+id/add_new_note"

@@ -44,25 +44,18 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
         // Colour Set of codes
         List<Integer> colours = Arrays.asList(
-                0xffe57373,
-                0xfff06292,
-                0xffba68c8,
-                0xff9575cd,
-                0xff7986cb,
-                0xff64b5f6,
-                0xff4fc3f7,
-                0xff4dd0e1,
-                0xff4db6ac,
-                0xff81c784,
-                0xffaed581,
-                0xffff8a65,
-                0xffd4e157,
-                0xffffd54f
-
+                0xffbbdefb,
+                0xffb9f6ca,
+                0xffffccbc,
+                0xfffff9c4,
+                0xfffff9c4,
+                0xffe0f7fa,
+                0xfffbe9e7,
+                0xfffce4ec,
+                0xffe8eaf6
         );
         Random mRandom = new Random(System.currentTimeMillis());
         int color1 = colours.get(mRandom.nextInt(colours.size()));
-
         viewHolder.con1.setBackgroundColor(color1);
 
         viewHolder.con_notes.setOnClickListener(new View.OnClickListener() {
@@ -79,8 +72,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
             }
         });
-
-
     }
 
     @Override
@@ -93,7 +84,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         TextView title, content, date;
         ConstraintLayout con_notes, con1;
 
-
         public ViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.tv_note_title);
@@ -101,8 +91,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
             date = itemView.findViewById(R.id.tv_note_creation_date);
             con_notes = itemView.findViewById(R.id.con_notes);
             con1 = itemView.findViewById(R.id.con1);
-
-
         }
     }
 }

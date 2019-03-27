@@ -3,9 +3,8 @@ package com.example.farmnotes;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,11 +16,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class NotesCreation extends AppCompatActivity {
-    EditText etTitle,etContent;
+    EditText etTitle, etContent;
     Button btn_create;
     private DbCreater dbCreater = new DbCreater(this);
-
-
 
 
     @Override
@@ -44,7 +41,9 @@ public class NotesCreation extends AppCompatActivity {
         String time = intent.getStringExtra("date");
         final Integer note_id = intent.getIntExtra("note_id", 0);
 
-        if(title!=null){
+
+        //Changing Button text to update if we are updating any note
+        if (title != null) {
             etTitle.setText(title);
             etContent.setText(content);
             btn_create.setText("Update");
@@ -52,13 +51,10 @@ public class NotesCreation extends AppCompatActivity {
         }
 
 
-
-
-
         btn_create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validate()) {
+                if (validate()) {
                     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     Date date = new Date();
                     System.out.println(dateFormat.format(date)); //2016/11/16 12:08:43
@@ -78,24 +74,21 @@ public class NotesCreation extends AppCompatActivity {
         });
 
 
-
     }
 
-    public boolean validate(){
+    // Validating Edit text for Null or Empty
+    public boolean validate() {
         boolean validate = true;
         String titleStr = etTitle.getText().toString();
         String contentStr = etContent.getText().toString();
-        if(titleStr.isEmpty() || titleStr.matches("")){
+        if (titleStr.isEmpty() || titleStr.matches("")) {
             etTitle.setError("Please Fill Title");
             validate = false;
         }
-        if(contentStr.isEmpty() || contentStr.matches("")){
+        if (contentStr.isEmpty() || contentStr.matches("")) {
             etContent.setError("Please Fill Content");
             validate = false;
         }
-
-
-
 
         return validate;
     }
