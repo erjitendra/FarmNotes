@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.farmnotes.database.DbCreater;
 import com.example.farmnotes.socialIntegration.GoogleLoginActivity;
@@ -22,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private NotesAdapter notesAdapter;
     private RecyclerView recyclerView;
     private TextView userName;
-    private Button logout;
     private ArrayList<NotesModel> notesModels = new ArrayList<>();
     private DbCreater dbCreater = new DbCreater(this);
 
@@ -40,18 +41,6 @@ public class MainActivity extends AppCompatActivity {
         else {
             userName.setVisibility(View.VISIBLE);
         userName.setText("Hi "+SaveSharedPreference.getUserName(this));}
-
-        //Logout
-        logout = findViewById(R.id.btn_logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SaveSharedPreference.setSignedIn(context,false);
-                SaveSharedPreference.clearAll(context);
-                Intent intent = new Intent(context, GoogleLoginActivity.class);
-                startActivity(intent);
-            }
-        });
 
 
         //Recycler View Settings
@@ -76,5 +65,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.my_notes_activity_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+
+                SaveSharedPreference.setSignedIn(context,false);
+                SaveSharedPreference.clearAll(context);
+                Intent intent = new Intent(context, GoogleLoginActivity.class);
+                startActivity(intent);
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
