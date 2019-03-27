@@ -29,12 +29,8 @@ public class DbCreater extends SQLiteOpenHelper {
                 + FarmNotesTable.FARM_COLUMN_CONTENT + " TEXT NOT NULL, "
                 + FarmNotesTable.FARM_COLUMN_NOTES_TIME + " TEXT NOT NULL);";
 
-
-
         // Execute the SQL statement
-        Log.v("indb", "createuser");
         db.execSQL(SQL_CREATE_FARM_NOTES_TABLE);
-
 
     }
 
@@ -45,7 +41,6 @@ public class DbCreater extends SQLiteOpenHelper {
     }
 
     public void createNotes(NotesModel note) {
-
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -59,8 +54,8 @@ public class DbCreater extends SQLiteOpenHelper {
         db.close();
     }
 
+    // Used for updating notes in sqlite db
     public void updateNotes(NotesModel note) {
-
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -70,18 +65,16 @@ public class DbCreater extends SQLiteOpenHelper {
         values.put(FarmNotesTable.FARM_COLUMN_NOTES_TIME, note.getDate());
 
         // Updating Row
-
-        db.update(FarmNotesTable.FARM_TABLE_NAME, values, "_id="+note.getId(), null);
+        db.update(FarmNotesTable.FARM_TABLE_NAME, values, "_id=" + note.getId(), null);
         db.close();
     }
 
-
-    public ArrayList<NotesModel> getNotes(){
+    // Used for getting notes from sqlite db
+    public ArrayList<NotesModel> getNotes() {
         ArrayList<NotesModel> notesList = new ArrayList<>();
 
         try {
             SQLiteDatabase db = this.getReadableDatabase();
-
             String selectQuerySQLCommand = "SELECT * FROM " + FarmNotesTable.FARM_TABLE_NAME + " ORDER BY _id DESC";
             Cursor cursor = db.rawQuery(selectQuerySQLCommand, null);
             while (cursor.moveToNext()) {
@@ -90,13 +83,11 @@ public class DbCreater extends SQLiteOpenHelper {
                 String content = cursor.getString(cursor.getColumnIndex(FarmNotesTable.FARM_COLUMN_CONTENT));
                 String creation_time = cursor.getString(cursor.getColumnIndex(FarmNotesTable.FARM_COLUMN_NOTES_TIME));
                 Integer notes_id = cursor.getInt(cursor.getColumnIndex(FarmNotesTable.FARM_COLUMN_ID));
-                NotesModel note = new NotesModel(title,content,creation_time);
+                NotesModel note = new NotesModel(title, content, creation_time);
                 note.setId(notes_id);
                 notesList.add(note);
-
             }
             cursor.close();
-
             db.close();
 
         } catch (Exception e) {

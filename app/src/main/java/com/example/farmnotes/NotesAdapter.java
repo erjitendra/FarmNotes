@@ -3,8 +3,6 @@ package com.example.farmnotes;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -14,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.amulyakhare.textdrawable.util.ColorGenerator;
-
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
@@ -44,26 +42,33 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         viewHolder.content.setText(notes.getContent());
         viewHolder.date.setText(notes.getDate());
 
-//        Random r = new Random();
-//        int red=r.nextInt(255 - 0 + 1)+0;
-//        int green=r.nextInt(255 - 0 + 1)+0;
-//        int blue=r.nextInt(255 - 0 + 1)+0;
-//
-//        GradientDrawable draw = new GradientDrawable();
-//        draw.setShape(GradientDrawable.RECTANGLE);
-//        draw.setColor(Color.rgb(red,green,blue));
-//        viewHolder.con_notes.setBackground(draw);
+        // Colour Set of codes
+        List<Integer> colours = Arrays.asList(
+                0xffe57373,
+                0xfff06292,
+                0xffba68c8,
+                0xff9575cd,
+                0xff7986cb,
+                0xff64b5f6,
+                0xff4fc3f7,
+                0xff4dd0e1,
+                0xff4db6ac,
+                0xff81c784,
+                0xffaed581,
+                0xffff8a65,
+                0xffd4e157,
+                0xffffd54f
 
-        ColorGenerator generator = ColorGenerator.MATERIAL;
-        int color1 = generator.getRandomColor();
-
+        );
+        Random mRandom = new Random(System.currentTimeMillis());
+        int color1 = colours.get(mRandom.nextInt(colours.size()));
 
         viewHolder.con1.setBackgroundColor(color1);
 
         viewHolder.con_notes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,NotesCreation.class);
+                Intent intent = new Intent(context, NotesCreation.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("title", notes.getTitle());
                 bundle.putString("content", notes.getContent());
@@ -76,9 +81,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         });
 
 
-
-
-
     }
 
     @Override
@@ -88,9 +90,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title, content,date;
-        ConstraintLayout con_notes,con1;
-
+        TextView title, content, date;
+        ConstraintLayout con_notes, con1;
 
 
         public ViewHolder(View itemView) {
@@ -100,7 +101,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
             date = itemView.findViewById(R.id.tv_note_creation_date);
             con_notes = itemView.findViewById(R.id.con_notes);
             con1 = itemView.findViewById(R.id.con1);
-
 
 
         }
